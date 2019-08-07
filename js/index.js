@@ -3,7 +3,7 @@ const links = document.querySelectorAll('nav-link');
 
 for(const link of links){
     link.addEventListener('click', (e) => {
-        console.log(e.preventDefault());
+        e.preventDefault();
     });
 }
 
