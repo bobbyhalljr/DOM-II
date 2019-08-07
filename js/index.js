@@ -1,8 +1,12 @@
 // prevent links from going to another page.
-// const links = document.querySelectorAll('a');links.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     console.log('it works');
-// })
+const links = document.querySelectorAll('nav-link');
+
+for(const link of links){
+    link.addEventListener('click', (e) => {
+        console.log(e.preventDefault());
+    });
+}
+
 
 // stop event bubbling 
 const ul = document.querySelector('ul');
@@ -74,6 +78,60 @@ button.addEventListener('click', (e) => {
     introP.remove();
     introH2.textContent = 'It vanished!'
 });
+
+
+
+// get selected text from webpage 
+function getSelectedText() {
+    let selectedText = '';
+    if(window.getSelection) { // all modern browsers and IE9+
+        selectedText = window.getSelection();
+    }
+
+    return selectedText.toString();
+}
+ 
+// selected text event 
+document.addEventListener('mouseup', () => {
+    let theText = getSelectedText();
+    if(theText.length > 0) { // check if there's text selected
+        console.log(theText); // logs whatever textual content the user has selected on the page
+    }
+} , false)
+
+// create range object
+function selectElementText(el){
+    let range = document.createRange(); // create new range object
+    range.selectNodeContents(el) // set range to emcompass desired element text
+    let selection = window.getSelection(); // get selection object from currently user selected text
+    selection.removeAllRanges(); //unselect any user selected text (if any)
+    selection.addRange(range); // add range to selection object to select it
+}
+
+// create variable for the event (changing the text)
+// const changeText = document.addEventListener('selectionchange', () => {
+//     return document.getSelection();
+// });
+
+// add keydown event listener
+const keyDown = document.addEventListener('keydown', (e) => {
+    if(e.isComposing || e.keyCode === 229){
+        return;
+    }
+
+    document.getSelectedText.textContent.remove();
+
+    console.log(textContent += `${e.code}`);
+});
+
+// selectElementText();
+
+// let text = getSelectedText();
+
+// mouseover 
+const logo = document.querySelector('.logo')
+
+
 
 // button.addEventListener('click', (e) => {
 //     // introH2.add();
